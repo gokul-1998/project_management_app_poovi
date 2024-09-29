@@ -1,5 +1,6 @@
 "use client";
 
+import { LockIcon } from 'lucide-react';
 import Image from 'next/image';
 import React,{ useState } from 'react'
 
@@ -8,7 +9,8 @@ const Sidebar = () => {
    const [showPriority, setShowPriority] = useState(true);
 
    const sidebarClassName='fixed flex flex-col h-[100%] justify-between shadow-xl transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auto bg-white w-64';
-  return (
+  
+   return (
     <div className={sidebarClassName}>
         <div className='flex h-[100%] w-full flex-col justify-start'>
             {/*TOP LOGO*/}
@@ -18,7 +20,15 @@ const Sidebar = () => {
             {/*TEAM*/}
             <div className='flex items-center gap-5 boder-y-[1.5px] border-gray-200 px-8 py-4 dark:boder-gray-700'>
               <Image src="/logo.png" alt="logo" width={40} height={40}/>
+              <div>
+                <h3 className='text-md font-bold tracking-wide dark:text-gray-200'>EDROH TEAM</h3>
+                <div className='mt-1 flex items-start gap-2'>
+                    <LockIcon className="mt-[0.1rem] h-3 w-3 text-gray-500 dark:text-gray-400"/>
+                    <p className='text-xs text-gray-500'>Private</p>
+                </div>
+              </div>
             </div>
+            {/* NAVBAR LINKS */}
         </div>
     </div>
   )
