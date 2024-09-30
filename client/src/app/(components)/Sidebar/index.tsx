@@ -1,17 +1,23 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from '@/app/redux';
-import { Home, LockIcon, LucideIcon } from 'lucide-react';
+import { Home, LockIcon, LucideIcon, X } from 'lucide-react';
 import Link from "next/link";
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import React,{ useState } from 'react'
+import { setIsSidebarCollapsed } from '@/state';
 
 const Sidebar = () => {
    const [showProjects, setShowProjects] = useState(true);
    const [showPriority, setShowPriority] = useState(true);
 
-   const sidebarClassName='fixed flex flex-col h-[100%] justify-between shadow-xl transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auto bg-white w-64';
+   const dispatch = useAppDispatch();
+   const isSidebarCollapsed = useAppSelector(
+     (state)=>state.global.isSidebarCollapsed,
+   );
+
+   const sidebarClassName=`fixed flex flex-col h-[100%] justify-between shadow-xl transition-all duration-300 h-full z-40 dark:bg-black overflow-y-auto bg-white ${isSidebarCollapsed ? "w-0 hidden" : "w-64"}`;
   
    return (
     <div className={sidebarClassName}>
@@ -19,6 +25,11 @@ const Sidebar = () => {
             {/*TOP LOGO*/}
             <div className='z-50 flex min-h-[56px] w-64 items-center justify-between bg-white px-6 pt-3 dark:bg-black'>
              <div className='text-xl font-bold text-gray-800 dark:text-white'>EDList</div>
+             {isSidebarCollapsed ? null : (
+              <button className="py-3" onClick={()=> {dispatch(setIsSidebarCollapsed(!isSidebarCollapsed))}}>
+                <X className="h-6 w-6 text-gray-800 hover:text-gray-500 dark:text-white" />
+              </button>
+             )}
             </div>
             {/*TEAM*/}
             <div className='flex items-center gap-5 boder-y-[1.5px] border-gray-200 px-8 py-4 dark:boder-gray-700'>
