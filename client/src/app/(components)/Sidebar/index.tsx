@@ -84,10 +84,10 @@ const Sidebar = () => {
                   <SidebarLink icon={Layers3} label="Backlog" href="/priority/backlog" />
                 </>
                )} 
-        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
 interface SidebarLinkProps {
   href: string;
