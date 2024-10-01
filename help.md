@@ -7,3 +7,8 @@ installed packeges:
   npm i @mui/x-data-grid
 
   npm i -D @types/node @types/uuid @types/numeral
+
+
+
+  <!-- postgres -->
+  SELECT setval(pg_get_serial_sequence('"DATA_MODEL_NAME_HERE"','id'),coalesce(max(id)+1,1),false) FROM "[DATA_MODEL_NAME_HERE]";
