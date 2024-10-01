@@ -1,13 +1,11 @@
-"use client"
+"use client";
 
 import React, { useState } from 'react'
 import ProjectHeader from '@/app/projects/ProjectHeader';
 
 
-type Props = {
-    params: {
-        id: string
-    };
+type Props = { 
+    params: { id: string};
 };
 
 const Project= ({ params }: Props) => {
@@ -19,9 +17,9 @@ const Project= ({ params }: Props) => {
     <div>
         {/*MODAL NEW TASK*/} 
         <ProjectHeader activeTab={activeTab} setActiveTab={setActiveTab} />
-        {/*{ activeTab==="Board" && (
-           <Board />
-      )}*/}
+        { activeTab==="Board" && (
+        //    <Board />
+      )} 
     </div>
   )
 }
