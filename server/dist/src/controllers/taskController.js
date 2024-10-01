@@ -17,7 +17,7 @@ const getTasks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const tasks = yield prisma.task.findMany({
             where: {
-                projectId: Number(projectId)
+                projectId: Number(projectId),
             },
             include: {
                 author: true,

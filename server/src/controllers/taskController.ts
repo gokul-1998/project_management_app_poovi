@@ -11,7 +11,7 @@ export const getTasks = async (
     try {
         const tasks = await prisma.task.findMany({
             where: {
-                projectId: Number(projectId)
+                projectId: Number(projectId),
             },
             include: {
                 author: true,
