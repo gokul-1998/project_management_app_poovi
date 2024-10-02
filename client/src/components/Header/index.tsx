@@ -15,6 +15,6 @@ const Header = ({ name, buttonComponent, isSmallText = false}:Props) => {
       {buttonComponent}
     </div>
   )
-}
+} 
 
 export default Header

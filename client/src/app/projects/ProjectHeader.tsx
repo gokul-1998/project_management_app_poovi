@@ -13,6 +13,7 @@ const ProjectHeader = ({activeTab, setActiveTab}: Props) => {
     {/*MODAL NEW PROJECT*/}
     <div className="pb-6 pt-6 lg:pb-4 lg:pt-8">
         <Header name="Product Design Development" />
+      
     </div>
   </div>
   )
