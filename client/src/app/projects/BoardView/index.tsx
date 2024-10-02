@@ -5,6 +5,7 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Task as TaskType } from '@/state/api';
 import { EllipsisVertical, Plus } from 'lucide-react';
 import { format } from 'date-fns';
+import Image from 'next/image';
 
 type BoardProps = {
     id: string;
@@ -131,7 +132,7 @@ const Task = ({ task }: TaskProps) => {
 
     const numberOfComments = (task.comments && task.comments.length) || 0;
 
-    const PriorityTag = ({ priority }: { priority: [ "Priority"] }) => (
+    const PriorityTag = ({ priority }: { priority: TaskType["priority"] }) => (
         <div 
             className={`rounded-full px-2 py-1 text-xs font-semibold ${
                 priority === "Urgent" 
@@ -147,6 +148,30 @@ const Task = ({ task }: TaskProps) => {
             {priority}
         </div>
     )
-}
+
+    return (
+        <div
+            ref={(instance)=> {
+                drop(instance);
+            }}
+            className={`mb-4 rounded-md bg-white shadow dark:bg-dark-secondary ${isDragging ? "opacity-50" : "opacity-100"}`}>
+                {task.attachments && task.attachments.length > 0 && (
+                    <Image
+                        src={`/${task.attachments[0].fileURL}`}
+                        alt={task.attachments[0].fileName}
+                        width={400}
+                        height={200}
+                        className="h-auto w-full rounded-t-md"
+                    />    
+                )}
+                <div className="p-4 md:p-6">
+                    <div className="flex items-start justify-between">
+                        <div className="flex flex-1 flex-wrapitems-center gap-2">
+                            {task.priority && <PriorityTag priority={task.priority} />}
+                        </div>
+                    </div>
+                </div>
+            </div>
+)}
 
 export default BoardView;  
