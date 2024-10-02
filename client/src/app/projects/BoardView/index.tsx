@@ -4,6 +4,7 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Task as TaskType } from '@/state/api';
 import { EllipsisVertical, Plus } from 'lucide-react';
+import { format } from 'date-fns';
 
 type BoardProps = {
     id: string;
@@ -123,6 +124,29 @@ const Task = ({ task }: TaskProps) => {
     }))  
 
     const taskTagsSplit = task.tags ? task.tags.split(",") : [];
+
+    const formattedStartDate = task.startDate ? format(new Date(task.startDate), "p"): "";
+    const formattedDueDate = task.dueDate ? format(new Date(task.dueDate), "p")
+    : "";
+
+    const numberOfComments = (task.comments && task.comments.length) || 0;
+
+    const PriorityTag = ({ priority }: { priority: [ "Priority"] }) => (
+        <div 
+            className={`rounded-full px-2 py-1 text-xs font-semibold ${
+                priority === "Urgent" 
+                    ? "bg-red-200 text-red-700" 
+                    : priority === "High" 
+                        ? "bg-yellow-200 text-yellow-700" 
+                        : priority === "Medium" 
+                            ? "bg-orange-200 text-orange-700" 
+                            : priority === "Low" 
+                                ? "bg-blue-200 text-blue-700" 
+                                : "bg-gray-200 text-gray-700"
+            }}`}>
+            {priority}
+        </div>
+    )
 }
 
 export default BoardView;  
