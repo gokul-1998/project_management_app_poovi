@@ -125,8 +125,12 @@ const Task = ({ task }: TaskProps) => {
     }))  
 
     const taskTagsSplit = task.tags ? task.tags.split(",") : [];
+    console.log(task.startDate)
 
-    const formattedStartDate = task.startDate ? format(new Date(task.startDate), "p"): "";
+
+    const formattedStartDate = task.startDate ? format(new Date(task.startDate), "yyyy-MM-dd") : ""; 
+    console.log(formattedStartDate, "formattedStartDate");
+
     const formattedDueDate = task.dueDate ? format(new Date(task.dueDate), "p")
     : "";
 
@@ -185,14 +189,14 @@ const Task = ({ task }: TaskProps) => {
                     <div className="my-3 flex justify-between">
                         <h4 className="text-md font-bold dark:text-white">{task.title}"</h4>
                         {typeof task.points === "number" && (
-                            <div className="ftext-xs font-semibold dark:text-white">
+                            <div className="text-xs font-semibold dark:text-white">
                                 {task.points} pts
                             </div>
                         )}
                     </div>
 
                     <div className="text-xs text-gray-500 dark:text-neutral-500">
-                        {formattedStartDate && <span>{formattedStartDate} - </span>}
+                        {formattedStartDate && <span>{formattedStartDate} -</span>}
                         {formattedDueDate && <span>{formattedDueDate}</span>}
                     </div>
                 </div>
