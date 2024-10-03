@@ -86,7 +86,7 @@ const Timeline = ({ id, setIsModalNewTaskOpen } : Props) => {
                 </button>
             </div>
         </div>
-    </div>
+    </div> 
   )}
 
 export default Timeline
