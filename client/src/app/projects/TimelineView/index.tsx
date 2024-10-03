@@ -9,7 +9,7 @@ type Props = {
     setIsModalNewTaskOpen: (isOpen: boolean) => void
 };
 
-type TaskTypeItems = "tasks" | "milestone" | "project";
+type TaskTypeItems = "task" | "milestone" | "project";
 const Timeline = ({ id, setIsModalNewTaskOpen } : Props) => {
   const isDarkMode = useAppSelector((state) => state.global.isDarkMode);
   const {
@@ -67,7 +67,7 @@ const Timeline = ({ id, setIsModalNewTaskOpen } : Props) => {
             </select>
           </div> 
         </div>
-        <div className="overflow-hidden rounded-md bg-white shadow dark:bg-dark-secondary cark:text-white">
+        <div className="overflow-hidden rounded-md bg-white shadow dark:bg-dark-secondary dark:text-white">
             <div className="timeline">
                 <Gantt
                     tasks={ganttTasks}
@@ -79,7 +79,7 @@ const Timeline = ({ id, setIsModalNewTaskOpen } : Props) => {
                 />    
             </div>
             <div className="px-4 pb-5 pt-1">
-                <button className="flex items-center rounded bg-blue-primary px-3 py-2 text-white hover:bg-blue-600"
+                <button className="flex items-center rounded bg-blue-600 px-3 py-2 text-white hover:bg-blue-600"
                  onClick={() => setIsModalNewTaskOpen(true)}
                 >
                     Add New Task
