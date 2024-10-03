@@ -9,12 +9,12 @@ import Image from 'next/image';
 
 type BoardProps = {
     id: string;
-    setIsModelNewTaskOpen: (isOpen: boolean) => void;
+    setIsModalNewTaskOpen: (isOpen: boolean) => void;
 }
 
 const taskStatus = [ "To Do","Work In Progress","Under Review","Completed" ];
 
-const BoardView = ({ id, setIsModelNewTaskOpen }: BoardProps) => {
+const BoardView = ({ id, setIsModalNewTaskOpen }: BoardProps) => {
     const {
         data: tasks,
         isLoading,
@@ -37,7 +37,7 @@ const BoardView = ({ id, setIsModelNewTaskOpen }: BoardProps) => {
             status={status}
             tasks={tasks ||[]}
             moveTask={moveTask}
-            setIsModelNewTaskOpen={setIsModelNewTaskOpen}
+            setIsModalNewTaskOpen={setIsModalNewTaskOpen}
             />  
         ))} 
     </div>
@@ -48,14 +48,14 @@ type TaskColumnProps = {
     status: string;
     tasks: TaskType[];
     moveTask: (taskId: number, toStatus: string) => void;
-    setIsModelNewTaskOpen: (isOpen: boolean) => void;
+    setIsModalNewTaskOpen: (isOpen: boolean) => void;
 }   
 
 const TaskColumn = ({ 
     status, 
     tasks, 
     moveTask, 
-    setIsModelNewTaskOpen 
+    setIsModalNewTaskOpen 
 }: TaskColumnProps) => {
     const [{ isOver }, drop] = useDrop(() => ({
         accept: "task",
@@ -65,7 +65,7 @@ const TaskColumn = ({
         })
     }))
 
-    const tasksCount = tasks.filter(task => task.status === status).length;
+    const tasksCount = tasks.filter((task) => task.status === status).length;
 
     const statusColor: any = {
         "To Do": "#2563EB",
@@ -98,7 +98,7 @@ const TaskColumn = ({
                             <EllipsisVertical size={26} />
                         </button>
                         <button className="flex h-6 w-6 items-center justify-center rounded bg-gray-200 dark:bg-dark-tertiary dark:text-white"
-                          onClick={() => setIsModelNewTaskOpen(true)}>
+                          onClick={() => setIsModalNewTaskOpen(true)}>
                             <Plus size={16} />
                         </button>
                     </div>
@@ -116,7 +116,7 @@ type TaskProps = {
 }
     
 const Task = ({ task }: TaskProps) => {
-    const [{ isDragging }, drop] = useDrag(() => ({
+    const [{ isDragging }, drag] = useDrag(() => ({
         type: "task",
         item: { id: task.id }, 
         collect: (monitor: any) => ({ 
@@ -144,7 +144,7 @@ const Task = ({ task }: TaskProps) => {
                     : priority === "High" 
                         ? "bg-yellow-200 text-yellow-700" 
                         : priority === "Medium" 
-                            ? "bg-orange-200 text-orange-700" 
+                            ? "bg-green-200 text-green-700" 
                             : priority === "Low" 
                                 ? "bg-blue-200 text-blue-700" 
                                 : "bg-gray-200 text-gray-700"
@@ -156,7 +156,7 @@ const Task = ({ task }: TaskProps) => {
     return (
         <div
             ref={(instance)=> {
-                drop(instance);
+                drag(instance);
             }}
             className={`mb-4 rounded-md bg-white shadow dark:bg-dark-secondary ${isDragging ? "opacity-50" : "opacity-100"}`}>
                 {task.attachments && task.attachments.length > 0 && (
