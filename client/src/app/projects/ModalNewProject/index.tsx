@@ -29,13 +29,13 @@ const ModalNewProject = ({ isOpen, onClose }: Props) => {
     return projectName && description && startDate && endDate;
   }
   
-  const inputStyles="w-full rounded border border-gray-300 p-2 shadow-sm dark:border-dark-tertiary dark:bg-dark-tertiary dark:text-white dark:focus:outline-none"
-  return 
+  const inputStyles ="w-full rounded border border-gray-300 p-2 shadow-sm dark:border-dark-tertiary dark:bg-dark-tertiary dark:text-white dark:focus:outline-none"
+  return (
     <Modal
        isOpen={isOpen} onClose={onClose} name=" Create New Project">
 
     </Modal>
-   
+  )
 }
 
 export default ModalNewProject
