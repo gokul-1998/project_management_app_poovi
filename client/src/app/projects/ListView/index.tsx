@@ -23,10 +23,7 @@ const ListView = ({ id, setIsModalNewTaskOpen }: Props) => {
             <Header name="List" /> 
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-            {tasks?.map((task:Task) => <TaskCard key={task.id} task={task} />)}(
-
-    
-))}
+            {tasks?.map((task:Task) => <TaskCard key={task.id} task={task} />)}
         </div>
     </div>
   )
