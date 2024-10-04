@@ -46,7 +46,7 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
     return title && authorUserId;
   }
 
-  const selectStyles ="mb-4 block w-full rounded border border-gray-300 py-2 px-3 dark:border-dark-tertiary dark:text-white dark:focus:outline-none";
+  const selectStyles ="mb-4 block w-full rounded border border-gray-300 px-3 py-2 dark:border-dark-tertiary dark:bg-dark-tertiary dark:text-white dark:focus:outline-none";
   
   const inputStyles ="w-full rounded border border-gray-300 p-2 shadow-sm dark:border-dark-tertiary dark:bg-dark-tertiary dark:text-white dark:focus:outline-none"
   return (
@@ -74,7 +74,7 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
         />
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-2">
             <select
-                className={inputStyles} 
+                className={selectStyles} 
                 value={status} 
                 onChange={(e)=> setStatus(Status[e.target.value as keyof typeof Status])}
             >
@@ -85,7 +85,7 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
                 <option value={Status.Completed}>Completed</option>
             </select>
             <select
-                className={inputStyles} 
+                className={selectStyles} 
                 value={priority} 
                 onChange={(e)=> setPriority(Priority[e.target.value as keyof typeof Priority])}
             >
@@ -139,8 +139,6 @@ const ModalNewTask = ({ isOpen, onClose, id }: Props) => {
         >
           {isLoading ? "Creating..." : "Create Task"}
         </button>
-        
-
       </form>
     </Modal>
   )
