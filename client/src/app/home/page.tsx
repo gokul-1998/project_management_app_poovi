@@ -4,8 +4,16 @@ import { Priority, Project, Task, useGetProjectsQuery, useGetTasksQuery } from '
 import React from 'react'
 import { useAppSelector } from '../redux';
 import { GridColDef } from '@mui/x-data-grid';
+import Header from '@/components/Header';
 
-
+const taskColumns: GridColDef[] = [
+    { field: "title", headerName: "Title", width: 200 },
+    { field: "status", headerName: "Status", width: 150 },
+    { field: "priority", headerName: "Priority", width: 150 },
+    { field: "dueDate", headerName: "Due Date", width: 150 },
+   ]
+   const COLORS = [ "#0088FE","#00C49F","#FFBB28","#FF8042"];
+   
 const HomePage =() => {
     const { 
         data: tasks, 
@@ -46,18 +54,30 @@ const HomePage =() => {
         count: statusCount[key],
    }))
 
-   const taskColumns: GridColDef[] = [
-    { field: "title", headerName: "Title", width: 200 },
-    { field: "status", headerName: "Status", width: 150 },
-    { field: "priority", headerName: "Priority", width: 150 },
-    { field: "dueDate", headerName: "Due Date", width: 150 },
-   ]
-
-
+   const chartColors = isDarkMode ? {
+    bar:"#8884d8",
+    barGrid:"#303030",
+    pieFill: "#4A90E2",
+    text: "#FFFFFF",
+   } : {
+    bar:"#8884d8",
+    barGrid:"#E0E0E0",
+    pieFill: "#82ca9d",
+    text: "#000000",
+   }
 
 
   return (
-    <div>HomePage</div>
+    <div className="continer h-full w-[100%] bg-gray-100 bg-transparent p-8">
+        <Header name = "Project Management Dashboard" />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            <div className="rounded-lg bg-white p-4 shadow-lg dark:bg-dark-secondary">
+                <h3 className="mb-4 text-lg font-semibold dark:text-white">
+                    Task Priority Distribution
+                </h3>
+            </div>
+        </div>
+    </div>
   )
 }
 
