@@ -54,12 +54,18 @@ export interface Task {
     authorUserId?: number;
     assignedUserId?: number;
 
-
     author?: User;
     assignee?: User;
     comments?: Comment[];
     attachments?: Attachment[];
 }
+
+export interface SearchResult {
+    tasks?: Task[];
+    projects?: Project[];
+    user?: User;
+}
+
 
 export const api = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: process.env.NEXT_PUBLIC_API_BASE_URL }),
@@ -98,6 +104,9 @@ export const api = createApi({
             }),
             invalidatesTags: (result, error, { taskId }) => [{ type: "Tasks", id: taskId }],
         }),
+        search: build.query<SearchResult, string>({
+            query: (query) => `search?query=${query}`,
+        }),
     }),
 })
 
@@ -106,5 +115,6 @@ export const {
     useCreateProjectMutation, 
     useGetTasksQuery, 
     useCreateTaskMutation,
-    useUpdateTaskStatusMutation
+    useUpdateTaskStatusMutation,
+    useSearchQuery
 } =api;
