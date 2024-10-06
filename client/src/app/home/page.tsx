@@ -79,7 +79,7 @@ const HomePage =() => {
                 <ResponsiveContainer width="100%" height={300}>
                     <BarChart data={taskDistribution}>
                         <CartesianGrid strokeDasharray="3 3" stroke={chartColors.barGrid} />
-                        <XAxis dataKey="name"/>
+                        <XAxis dataKey="name" />
                     </BarChart>
 
                 </ResponsiveContainer>
