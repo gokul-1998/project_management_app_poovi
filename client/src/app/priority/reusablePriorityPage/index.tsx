@@ -35,7 +35,7 @@ const ReusablePriorityPage = ({priority}: Props) => {
             >
                 Add Task
             </button>    
-        }/>
+        }/>  
     </div>
   )
 }
