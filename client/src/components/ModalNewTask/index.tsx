@@ -133,6 +133,15 @@ const ModalNewTask = ({ isOpen, onClose, id=null  }: Props) => {
                 value={assignedUserId} 
                 onChange={(e)=> setAssignedUserId(e.target.value)}
             />
+            {id === null && (
+              <input 
+                type="text" 
+                className={inputStyles} 
+                placeholder="ProjectId" 
+                value={projectId} 
+                onChange={(e)=> setProjectId(e.target.value)}
+            />
+            )}
         <button
           type="submit"
           className={`mt-4 flex w-full justify-center rounded-md border border-transparent bg-blue-primary px-4 py-2 text-base font-medium text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus-offset-2 ${isFormValid() || isLoading ? "cursor-not-allowed opacity-50" : ""}`}

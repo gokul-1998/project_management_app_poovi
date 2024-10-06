@@ -1,6 +1,7 @@
 "use client"
 
 import { useAppSelector } from '@/app/redux'
+import Header from '@/components/Header'
 import ModalNewTask from '@/components/ModalNewTask'
 import { Priority, Task, useGetTasksByUserQuery } from '@/state/api'
 import { Modal } from '@mui/material'
@@ -27,6 +28,14 @@ const ReusablePriorityPage = ({priority}: Props) => {
   return (
     <div className="m-5 p-4">
         <ModalNewTask isOpen=  {isModalNewTaskOpen} onClose={() => setIsModalNewTaskOpen(false)} />
+        <Header name="Priority Page" buttonComponent={
+            <button
+                className="mr-3 rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700" 
+                onClick={() => setIsModalNewTaskOpen(true)}
+            >
+                Add Task
+            </button>    
+        }/>
     </div>
   )
 }
