@@ -5,7 +5,7 @@ import React from 'react'
 import { useAppSelector } from '../redux';
 import { GridColDef } from '@mui/x-data-grid';
 import Header from '@/components/Header';
-import { BarChart, CartesianGrid, ResponsiveContainer, XAxis } from 'recharts';
+import { Bar, BarChart, CartesianGrid, Legend, PieChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts';
 
 const taskColumns: GridColDef[] = [
     { field: "title", headerName: "Title", width: 200 },
@@ -80,9 +80,24 @@ const HomePage =() => {
                     <BarChart data={taskDistribution}>
                         <CartesianGrid strokeDasharray="3 3" stroke={chartColors.barGrid} />
                         <XAxis dataKey="name" stroke={chartColors.text} />
-                        
+                        <Tooltip contentStyle={{width: "min-content",
+                            height: "min-content",
+                        }}/>
+                        <Legend />
+                        <Bar dataKey="count" fill={chartColors.bar} />
                     </BarChart>
-
+                </ResponsiveContainer>
+            </div>
+            <div className="rounded-lg bg-white p-4 shadow-lg dark:bg-dark-secondary">
+                <h3 className="mb-4 text-lg font-semibold dark:text-white">
+                    Project Status
+                </h3>
+                <ResponsiveContainer width="100%" height={300}>
+                    <PieChart >
+                        <CartesianGrid strokeDasharray="3 3" stroke={chartColors.barGrid} />
+                        
+                        <Legend />
+                    </BarChart>
                 </ResponsiveContainer>
             </div>
         </div>
