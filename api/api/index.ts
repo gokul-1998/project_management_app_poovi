@@ -43,4 +43,4 @@ app.listen(port, "0.0.0.0",() => {
     console.log(`Server running on part ${port}`);
 });
 
-module.exports = app
+// module.exports = app
