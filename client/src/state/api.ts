@@ -24,7 +24,7 @@ export enum Status {
 }
 
 export interface User {
-    userid: number;
+    userId: number;
     username: string;
     email: string;
     profilePictureUrl: string;
@@ -63,7 +63,7 @@ export interface Task {
 export interface SearchResult {
     tasks?: Task[];
     projects?: Project[];
-    user?: User;
+    users?: User[];
 }
 
 export interface Team {
